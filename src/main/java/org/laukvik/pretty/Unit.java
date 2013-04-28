@@ -21,7 +21,7 @@ import java.math.BigDecimal;
  *
  * @author morten
  */
-public interface AbstractUnit {
+public interface Unit {
     
     /**
      * Returns the numeric value of the unit

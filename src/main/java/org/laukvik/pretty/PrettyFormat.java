@@ -24,18 +24,18 @@ import java.math.RoundingMode;
  */
 public class PrettyFormat {
     
-    private AbstractUnit unit;
+    private Unit unit;
     private int fractionDigits = 2;
     private BigDecimal unitValue;
     
     public PrettyFormat(){
     }
 
-    public AbstractUnit getUnit() {
+    public Unit getUnit() {
         return unit;
     }
 
-    public void setUnit(AbstractUnit unit) {
+    public void setUnit(Unit unit) {
         this.unit = unit;
         this.unitValue = unit.getValue( unit.value() );
     }

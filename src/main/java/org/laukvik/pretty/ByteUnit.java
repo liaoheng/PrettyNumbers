@@ -21,7 +21,7 @@ import java.math.BigDecimal;
  *
  * @author morten
  */
-public enum ByteUnit implements AbstractUnit{
+public enum ByteUnit implements Unit{
 
     BYTE(0), 
     KILO(10), 

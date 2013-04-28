@@ -21,7 +21,7 @@ import java.math.BigDecimal;
  *
  * @author morten
  */
-public enum NumberUnit implements AbstractUnit{
+public enum NumberUnit implements Unit{
 
     TEN(1),
     HUNDRED(2),
