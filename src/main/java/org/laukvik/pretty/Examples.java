@@ -16,26 +16,38 @@
 package org.laukvik.pretty;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 /**
  *
- * @author morten
+ * @author Morten Laukvik
  */
-public class Test {
-    
-    public static void main( String [] args ){
+public class Examples {
+
+    public Examples() {
         PrettyFormat pretty = new PrettyFormat();
         pretty.setFractionDigits( 2 );
+
+        pretty.setUnit( ByteUnit.Kb );
+        System.out.println( pretty.format( new BigDecimal( "2050" ) ) ); 
         
-        BigDecimal bd = new BigDecimal( "1234567890" );
+        pretty.setUnit( NumberUnit.MILLION );
+        System.out.println( pretty.format( new BigDecimal( "1234567" ) ) );
         
-        pretty.setUnit( NumberUnit.THOUSAND );
-        System.out.println( pretty.format( bd ) ); 
         
-        pretty.setUnit( ByteUnit.MEGA );
-        System.out.println( pretty.format( bd ) );
- 
+        pretty.setUnit( NumberUnit.getPreferredUnit( new BigDecimal("1234567") ) );
         
+        System.out.println( pretty.format( new BigDecimal( "1234567" ) ) );
+        
+        
+        pretty.setUnit( ByteUnit.getPreferredUnit( new BigDecimal("1234") ) );
+        
+        System.out.println( pretty.format( new BigDecimal( "20123" ) ) );
+        
+    }
+    
+    public static void main( String[]args ){
+        new Examples();
     }
     
 }

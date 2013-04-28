@@ -19,12 +19,14 @@ import java.math.BigDecimal;
 
 /**
  *
- * @author morten
+ * @author Morten Laukvik
  */
 public enum NumberUnit implements Unit{
 
-    TEN(1),
-    HUNDRED(2),
+    /** 10^1 */
+    ONE(0),
+//    TEN(1),
+//    HUNDRED(2),
     THOUSAND(3),
     MILLION(6),
     BILLION(9),
@@ -58,14 +60,32 @@ public enum NumberUnit implements Unit{
         return multiplier;
     }
     
-    @Override
-    public BigDecimal getValue( int index ){
-        return new BigDecimal( "10" ).pow( index );
+
+    public BigDecimal getValue() {
+        return new BigDecimal( "10" ).pow( multiplier );
     }
+    
+//    @Override
+//    public BigDecimal getValue( int index ){
+//        return new BigDecimal( "10" ).pow( index );
+//    }
     
     @Override
     public String getName(){
         return name().toLowerCase();
     }
+
+    public static NumberUnit getPreferredUnit(BigDecimal value) { 
+        NumberUnit foundUnit = NumberUnit.ONE;
+        int x=1;
+        for (NumberUnit u : NumberUnit.values()){
+            if (value.compareTo( u.getValue() ) == 1 ){
+                foundUnit = u;
+            }
+            x++;
+        }
+        return foundUnit;
+    }
+
     
 }

@@ -19,19 +19,19 @@ import java.math.BigDecimal;
 
 /**
  *
- * @author morten
+ * @author Morten Laukvik
  */
 public enum ByteUnit implements Unit{
 
-    BYTE(0), 
-    KILO(10), 
-    MEGA(20), 
-    GIGA(30),
-    TERA(40),
-    PETA(50),
-    EXA(60),
-    ZETTA(70),
-    YOTTA(80)
+    b(0), 
+    Kb(10), 
+    Mb(20), 
+    Gb(30),
+    Tb(40),
+    Pb(50),
+    Eb(60),
+    Zb(70),
+    Yb(80)
     ;
     
     int multiplier;
@@ -45,12 +45,30 @@ public enum ByteUnit implements Unit{
         return multiplier;
     }
     
-    public BigDecimal getValue( int index ){
+    private BigDecimal getValue( int index ){
         return new BigDecimal( "2" ).pow( index );
+    }
+
+    public BigDecimal getValue() {
+        return getValue( multiplier );
     }
     
     public String getName(){
-        return name().toLowerCase();
+        return name();
     }
+
+    public static ByteUnit getPreferredUnit(BigDecimal value) { 
+        ByteUnit foundUnit = ByteUnit.b;
+        int x=1;
+        for (ByteUnit u : ByteUnit.values()){
+            if (value.compareTo( u.getValue() ) == 1 ){
+                foundUnit = u;
+            }
+            x++;
+        }
+        return foundUnit;
+    }
+
+
     
 }
