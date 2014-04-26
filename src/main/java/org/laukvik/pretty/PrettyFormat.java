@@ -16,22 +16,21 @@
 package org.laukvik.pretty;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.math.RoundingMode;
 
 /**
  * Formats numbers according to a Unit's formatting rules
- * 
- * 
+ *
+ *
  * @author Morten Laukvik
  */
 public class PrettyFormat {
-    
+
     private Unit unit;
     private int fractionDigits = 2;
 //    private BigDecimal unitValue;
-    
-    public PrettyFormat(){
+
+    public PrettyFormat() {
     }
 
     public Unit getUnit() {
@@ -40,8 +39,8 @@ public class PrettyFormat {
 
     /**
      * Sets the Unit to use when formatting a number
-     * 
-     * @param unit 
+     *
+     * @param unit
      */
     public void setUnit(Unit unit) {
         this.unit = unit;
@@ -54,44 +53,48 @@ public class PrettyFormat {
 
     /**
      * Sets the amount of fraction digits to use when formatting a number
-     * 
-     * @param fractionDigits 
+     *
+     * @param fractionDigits
      */
     public void setFractionDigits(int fractionDigits) {
         this.fractionDigits = fractionDigits;
     }
-    
+
     /**
      * Returns the new formatted number without the unit name
-     * 
+     *
      * @param value
-     * @return 
+     * @return
      */
-    public BigDecimal getValue( BigDecimal value ){
-        return value.divide( unit.getValue()  ).setScale( fractionDigits, RoundingMode.FLOOR );
+    public BigDecimal getValue(BigDecimal value) {
+        return value.divide(unit.getValue()).setScale(fractionDigits, RoundingMode.FLOOR);
     }
-    
+
     /**
      * Formats a number based on the current Unit
-     * 
+     *
      * @param value
-     * @return 
+     * @return
      */
-    public String format( BigDecimal value ){
+    public String format(BigDecimal value) {
         return getValue(value) + " " + unit.getName();
     }
-    
-    public String format( Number value ){
-        return format( new BigDecimal(value+"") );
+
+    public String format(Number value) {
+        return format(new BigDecimal(value + ""));
     }
-    
+
+    public String format(String value) {
+        return format(new BigDecimal(value + ""));
+    }
+
     /**
      * Returns the name of the unit being used
-     * 
-     * @return 
+     *
+     * @return
      */
-    public String getUnitName(){
+    public String getUnitName() {
         return unit.getName();
     }
-    
+
 }
