@@ -28,9 +28,12 @@ public class PrettyFormat {
 
     private Unit unit;
     private int fractionDigits = 2;
-//    private BigDecimal unitValue;
 
-    public PrettyFormat() {
+    private PrettyFormat() {
+    }
+
+    public static PrettyFormat with() {
+        return new PrettyFormat();
     }
 
     public Unit getUnit() {
@@ -42,9 +45,9 @@ public class PrettyFormat {
      *
      * @param unit
      */
-    public void setUnit(Unit unit) {
+    public PrettyFormat setUnit(Unit unit) {
         this.unit = unit;
-//        this.unitValue = unit.getValue( unit.value() );
+        return this;
     }
 
     public int getFractionDigits() {
@@ -56,8 +59,9 @@ public class PrettyFormat {
      *
      * @param fractionDigits
      */
-    public void setFractionDigits(int fractionDigits) {
+    public PrettyFormat setFractionDigits(int fractionDigits) {
         this.fractionDigits = fractionDigits;
+        return this;
     }
 
     /**

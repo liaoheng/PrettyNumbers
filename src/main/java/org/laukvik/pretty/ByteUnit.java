@@ -21,47 +21,37 @@ import java.math.BigDecimal;
  *
  * @author Morten Laukvik
  */
-public enum ByteUnit implements Unit{
+public enum ByteUnit implements Unit {
 
-    b(0), 
-    Kb(10), 
-    Mb(20), 
-    Gb(30),
-    Tb(40),
-    Pb(50),
-    Eb(60),
-    Zb(70),
-    Yb(80)
-    ;
-    
+    b(0), Kb(10), Mb(20), Gb(30), Tb(40), Pb(50), Eb(60), Zb(70), Yb(80);
+
     int multiplier;
-    
-    private ByteUnit(int multiplier){
+
+    ByteUnit(int multiplier) {
         this.multiplier = multiplier;
     }
 
-    @Override
-    public int value() {
+    @Override public int value() {
         return multiplier;
     }
-    
-    private BigDecimal getValue( int index ){
-        return new BigDecimal( "2" ).pow( index );
+
+    private BigDecimal getValue(int index) {
+        return new BigDecimal("2").pow(index);
     }
 
     public BigDecimal getValue() {
-        return getValue( multiplier );
+        return getValue(multiplier);
     }
-    
-    public String getName(){
+
+    public String getName() {
         return name();
     }
 
-    public static ByteUnit getPreferredUnit(BigDecimal value) { 
+    public static ByteUnit getPreferredUnit(BigDecimal value) {
         ByteUnit foundUnit = ByteUnit.b;
-        int x=1;
-        for (ByteUnit u : ByteUnit.values()){
-            if (value.compareTo( u.getValue() ) == 1 ){
+        int x = 1;
+        for (ByteUnit u : ByteUnit.values()) {
+            if (value.compareTo(u.getValue()) == 1) {
                 foundUnit = u;
             }
             x++;
@@ -69,6 +59,4 @@ public enum ByteUnit implements Unit{
         return foundUnit;
     }
 
-
-    
 }

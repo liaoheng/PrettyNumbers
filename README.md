@@ -15,7 +15,7 @@ Example, file size
 
     /* Formats number in Kilo byte sizes */
     pretty.setUnit(ByteUnit.Kb);
-    System.out.println(pretty.format("1234")); // outputs 2.00 Kb
+    System.out.println(pretty.format("1234")); // outputs 1.20 Kb
 
     /* Formats number in Mega byte sizes */
     pretty.setUnit(ByteUnit.Mb);
@@ -28,9 +28,3 @@ Example, find best suitable format
     /* than a billion */
     pretty.setUnit(ByteUnit.getPreferredUnit(new BigDecimal("1234567"))); // finds Mb
     System.out.println(pretty.format("1234567")); // 1.17 Mb
-
-Example, ordinary numbers
-
-    /* Formats in millions */
-    pretty.setUnit(NumberUnit.MILLION);
-    System.out.println(pretty.format(new BigDecimal("1234567"))); // 1.23 million

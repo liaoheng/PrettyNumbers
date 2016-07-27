@@ -22,36 +22,26 @@ import java.math.BigDecimal;
  * @author Morten Laukvik
  */
 public interface Unit {
-    
-    /**
-     * Returns the preferred unit for that value
-     * 
-     * @param value
-     * @return the preffered unit
-     */
-//    public Unit getPreferredUnit( BigDecimal value );
-    
+
     /**
      * Returns the numeric value of the unit
-     * 
-     * @param index 
+     *
      * @return numberic value of the unit
      */
-//    public BigDecimal getValue( int index );
-        public BigDecimal getValue();
-    
+    BigDecimal getValue();
+
     /**
      * Returns the value of the unit
-     * 
-     * @return 
+     *
+     * @return
      */
-    public int value();
-    
+    int value();
+
     /**
      * Return the name of the unit 
-     * 
-     * @return 
+     *
+     * @return
      */
-    public String getName();
-    
+    String getName();
+
 }
