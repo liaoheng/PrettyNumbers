@@ -2,6 +2,7 @@ package org.laukvik.pretty;
 
 import java.math.BigDecimal;
 import org.junit.Test;
+import ru.lanwen.verbalregex.VerbalExpression;
 
 import static org.junit.Assert.*;
 
@@ -22,4 +23,15 @@ public class PrettyFormatTest {
         assertEquals("1.17 Mb", format);
     }
 
+    @Test public void smallFormat() throws Exception {
+        String format = PrettyFormat.with().setUnit(ByteUnit.Kb).setFractionDigits(2).format("200");
+        assertEquals("0.19 Kb", format);
+    }
+
+    @Test public void decimalFormat() throws Exception {
+        String format = PrettyFormat.with()
+                .setUnit(new DecimalUnit(DecimalUnit.DecimalOptions.THOUSAND, "K"))
+                .setFractionDigits(2).format("200");
+        assertEquals("0.20 K", format);
+    }
 }
