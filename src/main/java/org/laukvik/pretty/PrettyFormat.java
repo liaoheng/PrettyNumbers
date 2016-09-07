@@ -75,6 +75,16 @@ public class PrettyFormat {
     }
 
     /**
+     * Returns the new formatted number without the unit name
+     *
+     * @param value
+     * @return
+     */
+    public String getValueString(BigDecimal value) {
+        return String.valueOf(getValue(value));
+    }
+
+    /**
      * Formats a number based on the current Unit
      *
      * @param value
@@ -85,11 +95,31 @@ public class PrettyFormat {
     }
 
     public String format(Number value) {
-        return format(new BigDecimal(value + ""));
+        return format(String.valueOf(value));
     }
 
     public String format(String value) {
-        return format(new BigDecimal(value + ""));
+        checkNumber(value);
+        return format(new BigDecimal(value));
+    }
+
+    public String formatRemoveLastZero(Number value) {
+        return formatRemoveLastZero(String.valueOf(value));
+    }
+
+    public String formatRemoveLastZero(String value) {
+        checkNumber(value);
+        return formatRemoveLastZero(new BigDecimal(value));
+    }
+
+    public String formatRemoveLastZero(BigDecimal value) {
+        return Utils.removeLastZero(getValueString(value)) + " " + unit.getName();
+    }
+
+    private void checkNumber(String number) {
+        if (!Utils.isNumber(number)) {
+            throw new IllegalArgumentException(number + "is not number");
+        }
     }
 
     /**

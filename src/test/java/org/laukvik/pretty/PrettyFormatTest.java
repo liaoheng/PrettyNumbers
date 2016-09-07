@@ -2,7 +2,6 @@ package org.laukvik.pretty;
 
 import java.math.BigDecimal;
 import org.junit.Test;
-import ru.lanwen.verbalregex.VerbalExpression;
 
 import static org.junit.Assert.*;
 
@@ -13,8 +12,8 @@ import static org.junit.Assert.*;
 public class PrettyFormatTest {
     @Test public void format() throws Exception {
         String format = PrettyFormat.with().setFractionDigits(2).setUnit(ByteUnit.Kb)
-                .format("1234");
-        assertEquals("1.20 Kb", format);
+                .formatRemoveLastZero("1234");
+        assertEquals("1.2 Kb", format);
     }
 
     @Test public void autoFormat() throws Exception {
@@ -30,8 +29,14 @@ public class PrettyFormatTest {
 
     @Test public void decimalFormat() throws Exception {
         String format = PrettyFormat.with()
-                .setUnit(new DecimalUnit(DecimalUnit.DecimalOptions.THOUSAND, "K"))
-                .setFractionDigits(2).format("200");
-        assertEquals("0.20 K", format);
+                .setUnit(new DecimalUnit(DecimalUnit.DecimalOptions.THOUSAND, "km"))
+                .setFractionDigits(2).formatRemoveLastZero("200");
+        assertEquals("0.2 km", format);
+    }
+
+    @Test
+    public void removeLastZeroTest(){
+        String s = Utils.removeLastZero("2.00");
+        assertEquals("2", s);
     }
 }
